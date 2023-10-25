@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    textarea {
+  display:block;
+  box-sizing: border-box;
+  width:80%;
+  margin: auto;
+  border: 0;
+  outline: 0;
+  background: white;
+  border-radius: 20px;
+  padding:20px;
+  font-weight: bold;
+  font-size: 1.4em;
+  color: #343434;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+body {
+  background-color: #282828;
+  font-family: 'Roboto', sans-serif;
+/*   overflow: hidden; */
+}
+.centered {
+  width: 100vw;
+  height: 100vh;
+/*   display: flex; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+.button-23 {
+  background-color: #FFFFFF;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  padding: 7px 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+}
+
+.button-23:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.button-23:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
+}
+
+
+</style>
+<body>
+    <div class="centered">
+        <h1>Transcribed texts <button class="button-23" id="download" role="button">Download as text file</button>
+        </h1>
+
+        <form>
+            <textarea name="myText" id="myTextarea" rows="10" disabled>
+                {{ transcribed_text }}
+            </textarea>
+        </form>
+    </div>
+    <script>
+        const txt = document.querySelector('#myTextarea');
+        function setNewSize() {
+            this.style.height = "1px";
+            this.style.height = this.scrollHeight + "px";
+        }
+        txt.addEventListener('input', setNewSize);
+
+        // Function to download text as a file
+        function downloadTextFile() {
+            const textToWrite = txt.value;
+            const blob = new Blob([textToWrite], { type: 'text/plain' });
+            const anchor = document.createElement('a');
+            anchor.href = URL.createObjectURL(blob);
+            anchor.download = 'transcribed_text.txt';
+            anchor.click();
+        }
+
+        const downloadButton = document.getElementById('download');
+        downloadButton.addEventListener('click', downloadTextFile);
+    </script>
+</body>
+
+</html>

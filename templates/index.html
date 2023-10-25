@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcription App</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400700&display=swap");
+ body {
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 height: 100vh;
+	 background: #1d1e22;
+	 font-family: Montserrat;
+}
+/* text box ---------------------------------------------------------*/
+ .field {
+	 width: calc(100% - 20px);
+	 max-width: 80vw;
+	 margin-inline: auto;
+}
+ .field__head {
+	 display: flex;
+	 align-items: center;
+	 gap: 15px;
+}
+ .field__ttl {
+	 color: #ddd;
+	 font-family: inherit;
+	 font-size: 30px;
+	 font-weight: 700;
+	 line-height: 1;
+}
+ .field__tag {
+	 padding: 6px 9px;
+	 border-radius: 2px;
+	 color: #ddd;
+	 font-family: inherit;
+	 font-size: 15px;
+	 font-weight: 400;
+	 line-height: 100%;
+}
+ .field__tag.is-require {
+	 background: #ee8013;
+}
+ .field__body {
+	 margin-top: 15px;
+}
+ .text-box {
+	 width: 100%;
+}
+/* Reset default style */
+ [type="text"] {
+	 margin: 0;
+	 padding: 0;
+	 background: none;
+	 border: none;
+	 border-radius: 0;
+	 outline: none;
+	 appearance: none;
+}
+ [type="text"] {
+	 width: inherit;
+	 border-radius: 5px;
+	 background: #ddd;
+	 padding: 15px;
+	 font-size: 20px;
+	 font-weight: 400;
+	 font-family: inherit;
+}
+
+.button-23 {
+  background-color: #FFFFFF;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #222222;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin-top: 20px;
+  outline: none;
+  padding: 13px 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+  user-select: none;
+  -webkit-user-select: none;
+  width: auto;
+  float:right;
+}
+
+.button-23:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+.button-23:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(.96);
+}
+</style>
+<body>
+    <div class="field">
+        <div class="field__head">
+            <label class="field__ttl" for="audioUrl">Transcribing MP3</label>
+            <span class="field__tag is-require">Required</span>
+        </div>
+        <form action="/transcribe" method="post" id="transcribeForm">
+            <div class="field__body">
+                <div class="text-box">
+                    <input type="text" id="audioUrl" name="audioUrl" placeholder="Enter link" required>
+                </div>
+                <button type="submit" class="button-23" id="download" role="button">Transcribe</button>
+                <div id="loading" style="display: none;color:#fff;margin-top:5px">Loading....</div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    document.getElementById("transcribeForm").addEventListener("submit", function(event) {
+        // Show loading animation
+        document.getElementById("loading").style.display = "block";
+        // Disable the button to prevent multiple submissions
+        document.getElementById("download").setAttribute("disabled", true);
+    });
+</script>
+</body>
+</html>
