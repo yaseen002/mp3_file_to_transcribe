@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import assemblyai as aai
 
 app = Flask(__name__)
-aai.settings.api_key = "21d129ad4e0e4117b77e632aa10c3504"
+aai.settings.api_key = "###################"
 
 
 class Transcriber:
